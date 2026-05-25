@@ -64,6 +64,23 @@ class SaludoController extends Controller
         $nuevoAlumno->save();
 
         // 4. Redireccionamos al usuario al listado principal con un mensaje de éxito silencioso
-        return redirect('/alumnos');
+        return redirect('/alumnos')
+            ->with('Éxito', 'alumno creado Correctamente');
+    }
+
+    /** Elimina un Alumno de la base de datos. */
+    public function eliminarAlumno($id)
+    {
+        /** Buscamos al alumno por el id, sino lo encuentra, lanzamos un error 404
+         * usando el método finOrFail.
+         */
+        $alumno = Alumno::findOrFail($id);
+
+        // Ejecutamos la orden de eliminación de la base de datos.
+        $alumno->delete();
+
+        /** Redirigimos al usuarios al listado de alumno ya actualizada. */
+        return redirect('/alumnos')
+        ->with('Cuidado', '¡Alumno eliminado correctamente');
     }
 }

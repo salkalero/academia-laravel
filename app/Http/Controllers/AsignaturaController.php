@@ -72,7 +72,8 @@ class AsignaturaController extends Controller
         $nuevaAsignatura->save();
 
         // 4. Redireccionamos al usuario al listado principal con un mensaje de éxito silencioso
-        return redirect('/asignaturas');
+        return redirect('/asignaturas')
+            ->with('Éxito', '¡Asignatura guardada correctamente!');
     }
 
     /** Eliminamos la asignatura en base al id */
@@ -94,6 +95,7 @@ class AsignaturaController extends Controller
          * recuperar el listado actualizado de asignaturas y mostrarlo en la vista
          * asignaturas.blade.php. 
          * */
-        return redirect('/asignaturas');
+        return redirect('/asignaturas')
+            ->with('Cuidado', '¡Asignatura eliminada correctamente!');
     }
 }

@@ -28,6 +28,21 @@
         </div>
 
         <div class="overflow-x-auto">
+
+            <!-- Bloque de aviso cuando se añade una asignatura o cuando se elimina la asignatura. -->
+            @if(session('Éxito'))
+            <div style="background-color: #d1e7dd; color: #0f5132; padding: 15px; margin-bottom: 20px; border: 1px solid #badbcc; border-radius: 5px;">
+                <strong>¡Éxito!</strong> {{ session('Éxito') }}
+            </div>
+            @endif
+
+            @if(session('Cuidado'))
+            <div style="background-color: #f8d7da; color: #842029; padding: 15px; margin-bottom: 20px; border: 1px solid #f5c2c7; border-radius: 5px;">
+                <strong>Aviso:</strong> {{ session('Cuidado') }}
+            </div>
+            @endif
+
+            <!--  Tabla donde se muestran todas las asignaturas que hay en la bbdd y los botones de cada línea.. -->
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-50 border-b border-gray-200">

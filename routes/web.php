@@ -38,3 +38,6 @@ Route::post('/alumnos', [SaludoController::class,'guardarAlumno']);
 
 // Ruta para eliminar una asignatura, El {id} cambiará según la asignatura elegida.
 Route::post('asignaturas/{id}/eliminar', [AsignaturaController::class, 'eliminar']);
+
+// Ruta para eliminar un alumno. El {id} cambiará según el alumno elegido.
+Route::post('alumnos/{id}/eliminar', [SaludoController::class, 'eliminarAlumno']); 

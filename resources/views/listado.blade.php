@@ -29,11 +29,27 @@
         </div>
 
         <div class="overflow-x-auto">
+
+            <!-- Bloque de aviso cuando se añade una asignatura o cuando se elimina la asignatura. -->
+            @if(session('Éxito'))
+            <div style="background-color: #d1e7dd; color: #0f5132; padding: 15px; margin-bottom: 20px; border: 1px solid #badbcc; border-radius: 5px;">
+                <strong>¡Éxito!</strong> {{ session('Éxito') }}
+            </div>
+            @endif
+
+            @if(session('Cuidado'))
+            <div style="background-color: #f8d7da; color: #842029; padding: 15px; margin-bottom: 20px; border: 1px solid #f5c2c7; border-radius: 5px;">
+                <strong>Aviso:</strong> {{ session('Cuidado') }}
+            </div>
+            @endif
+
+            <!-- Tabla del listado de los alumnos -->
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-50 border-b border-gray-200">
                         <th class="p-3 text-xs font-bold uppercase tracking-wider text-gray-500">Nombre del Alumno</th>
                         <th class="p-3 text-xs font-bold uppercase tracking-wider text-gray-500">Correo Electrónico</th>
+                        <th class="p-3 text-xs font-bold uppercase tracking-wider text-gray-500">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-150">
@@ -45,6 +61,14 @@
                         </td>
                         <td class="p-3 text-sm text-gray-500">
                             {{ $alumno->email }}
+                        </td>
+                        <td class="p-3 text-center">
+                            <form action="/alumnos/{{ $alumno->id }}/eliminar" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este alumno?');">
+                                @csrf
+                                <button type="submit" class="text-xs bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-1.5 rounded transition-colors shadow-sm">
+                                    🗑️ Eliminar
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
