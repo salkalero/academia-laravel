@@ -65,6 +65,9 @@
                         <td class="p-3 text-center">
                             <form action="/alumnos/{{ $alumno->id }}/eliminar" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este alumno?');">
                                 @csrf
+                                <a href="{{ route('alumnos.panel', $alumno->id) }}" style="background-color: #0d6efd; color: white; text-decoration: none; padding: 5px 10px; border-radius: 3px; margin-right: 5px;">
+                                    Ver Panel
+                                </a>
                                 <button type="submit" class="text-xs bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-1.5 rounded transition-colors shadow-sm">
                                     🗑️ Eliminar
                                 </button>

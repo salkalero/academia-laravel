@@ -18,6 +18,7 @@ Route::get ('saludo2/{nombre?}', function($nombre = 'Invitado'){
 // Ruta para mostrar la página de inicio.
 Route::get('/', [HomeController::class, 'index']);
 
+
 // Ruta para mostrar el listado de alumnos.
 Route::get('/alumnos', [SaludoController::class, 'mostrarListado']);
 
@@ -41,3 +42,15 @@ Route::post('asignaturas/{id}/eliminar', [AsignaturaController::class, 'eliminar
 
 // Ruta para eliminar un alumno. El {id} cambiará según el alumno elegido.
 Route::post('alumnos/{id}/eliminar', [SaludoController::class, 'eliminarAlumno']); 
+
+// Ruta para ver el panel de control y notas de un alumno específico
+Route::get('/alumnos/{id}/panel', [HomeController::class, 'panel'])->name('alumnos.panel');
+
+// Ruta para procesar la matrícula de un alumno en una asignatura
+Route::post('/alumnos/{id}/matricular', [HomeController::class, 'matricular']);
+
+// Ruta para actualizar la nota de un alumno en una asignatura específica
+Route::post('/alumnos/{id}/nota/{asignaturaId}', [HomeController::class, 'actualizarNota']);
+
+// Ruta para desmatricular a un alumno de una asignatura específica
+Route::post('/alumnos/{id}/desmatricular/{asignaturaId}', [HomeController::class, 'desmatricular']);
